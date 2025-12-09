@@ -6,8 +6,8 @@ CONTAINER=Nethr-server
 
 lint: 
 
-
 format:
+	npx prettier --write "**/*.tsx"
 
 backend:
 	$(GIT) clone https://github.com/MindsofD23b/Backend.git
