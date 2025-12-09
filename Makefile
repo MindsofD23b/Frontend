@@ -12,7 +12,7 @@ format:
 backend:
 	$(GIT) clone https://github.com/MindsofD23b/Backend.git
 
-	$(MAKE) -C ./Backend build
+	$(MAKE) -C ./Backend frbuild
 	$(MAKE) -C ./Backend run
 
 clean:
