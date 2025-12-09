@@ -60,12 +60,13 @@ export default function LoginPage() {
 
               {/* Login button – optional, keeps the layout complete */}
               <button
-                type="submit"
-                className="mt-2 w-full rounded-full bg-[#] py-3 text-sm font-semibold
-                           text-white hover:brightness-110 transition"
-              >
-                Sign in
-              </button>
+  type="submit"
+  className="mt-2 w-full rounded-full bg-[#FF5E1E] py-3 text-sm font-semibold
+             text-white hover:brightness-110 transition"
+>
+  Sign in
+</button>
+
             </form>
 
             {/* Links */}
@@ -74,7 +75,7 @@ export default function LoginPage() {
                 Did you forget your password? Click{" "}
                 <button
                   type="button"
-                  className="text-[#] hover:underline"
+                  className="text-[#FF5E1E] hover:underline"
                 >
                   here
                 </button>{" "}
@@ -83,7 +84,7 @@ export default function LoginPage() {
 
               <p className="mt-3">
                 Already have an Account{" "}
-                <Link href="/login" className="text-[#] hover:underline">
+                <Link href="/login" className="text-[#FF5E1E] hover:underline">
                   here
                 </Link>
                 .
