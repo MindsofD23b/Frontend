@@ -34,3 +34,27 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+
+---
+
+
+## 💬 Contribution & Team
+- GitHub: **[Click here](https://github.com/MindsofD23b/)**  
+- Collaborators are actively maintained  
+- Git workflow: branches, pull requests, reviews  
+
+
+---
+
+## 🔗 Related Repositories
+
+| Repo | Description |
+|------|-------------|
+| **[Nethr](https://github.com/MindsofD23b/Nethr)** | Main platform repository - core architecture, planning & meta resources. |
+| **[Documentations](https://github.com/MindsofD23b/Documentations)** | Central documentation hub containing concepts, status reports, usage guides, and project planning. |
+| **[Frontend](https://github.com/MindsofD23b/Frontend)** | React + Tailwind frontend for the Nethr dashboard, user interface, and server management UI. |
+| **[Backend](https://github.com/MindsofD23b/Backend)** | API, server logic, authentication, billing integrations, monitoring endpoints, and infrastructure connections. |
+| **[Service](https://github.com/MindsofD23b/Service)** | Background services: server deployment pipeline, resource scaling, monitoring workers & automation tasks. |
+
+
