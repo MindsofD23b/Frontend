@@ -1,4 +1,15 @@
+"use client";
+
+import { useRouter } from "next/navigation";
+
 export default function AddServerPage() {
+  const router = useRouter();
+
+  // FIX: führt zu /home/checkout-small etc. (nicht /home/checkout/small)
+  const goCheckout = (plan: "small" | "big" | "custom") => {
+    router.push(`/home/checkout-${plan}`);
+  };
+
   return (
     <>
       {/* Top Bar */}
@@ -9,7 +20,7 @@ export default function AddServerPage() {
           </div>
         </div>
 
-        <button className="h-12 w-12 rounded-full bg-gradient-to-br from-red-500 to-red-700 text-white shadow-lg hover:scale-105 transition">
+        <button className="h-12 w-12 rounded-full bg-gradient-to-br from-red-500 to-red-700 text-white shadow-[0_0_18px_rgba(255,60,60,0.6)] hover:scale-105 transition">
           🗑
         </button>
       </div>
@@ -18,9 +29,8 @@ export default function AddServerPage() {
       <div className="flex-1 rounded-2xl bg-black/40 backdrop-blur-xl p-6 ring-1 ring-white/10 shadow-2xl">
         <div className="h-full rounded-3xl bg-gradient-to-br from-[#161616]/80 to-[#1F1F1F]/80 p-6 ring-1 ring-white/10">
           <div className="grid grid-cols-3 gap-6 h-full">
-
             {/* Small */}
-            <div className="rounded-3xl bg-gradient-to-b from-[#242424] to-[#1A1A1A] p-6 flex flex-col ring-1 ring-white/10 shadow-xl hover:translate-y-[-2px] transition">
+            <div className="rounded-3xl bg-gradient-to-b from-[#242424] to-[#1A1A1A] p-6 flex flex-col ring-1 ring-orange-500/20 shadow-[0_0_25px_rgba(255,120,40,0.15)] hover:shadow-[0_0_35px_rgba(255,120,40,0.35)] transition">
               <h3 className="text-center text-white font-semibold mb-4 tracking-wide">
                 Small Package
               </h3>
@@ -33,15 +43,22 @@ export default function AddServerPage() {
               </div>
 
               <div className="mt-auto flex justify-center pt-6">
-                <button className="rounded-full px-7 py-2 bg-gradient-to-r from-orange-400 to-orange-600 text-white font-semibold shadow-lg hover:scale-105 transition">
+                <button
+                  onClick={() => router.push("https://buy.stripe.com/test_bJe7sKcwHfMU4S8b098Vi00")}
+                  className="rounded-full px-7 py-2 bg-gradient-to-r from-orange-400 to-orange-600 text-white font-semibold shadow-[0_0_18px_rgba(255,140,60,0.6)] hover:scale-105 transition"
+                >
                   9.99 CHF
-                </button>
+                </button>   
               </div>
             </div>
 
             {/* Big */}
-            <div className="rounded-3xl bg-gradient-to-b from-[#262626] to-[#1C1C1C] p-6 flex flex-col ring-1 ring-red-500/20 shadow-xl hover:translate-y-[-2px] transition">
-              <h3 className="text-center text-white font-semibold mb-4 tracking-wide">
+            <div className="rounded-3xl bg-gradient-to-b from-[#262626] to-[#1C1C1C] p-6 flex flex-col ring-2 ring-red-500/40 shadow-[0_0_35px_rgba(255,60,60,0.35)] hover:shadow-[0_0_45px_rgba(255,60,60,0.6)] transition relative">
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-red-500 px-4 py-1 text-xs font-semibold text-white shadow-[0_0_15px_rgba(255,60,60,0.8)]">
+                Recommended
+              </div>
+
+              <h3 className="text-center text-white font-semibold mb-4 tracking-wide mt-3">
                 Big Package
               </h3>
 
@@ -53,14 +70,17 @@ export default function AddServerPage() {
               </div>
 
               <div className="mt-auto flex justify-center pt-6">
-                <button className="rounded-full px-7 py-2 bg-gradient-to-r from-red-500 to-red-700 text-white font-semibold shadow-lg hover:scale-105 transition">
+                <button
+                  onClick={() => goCheckout("big")}
+                  className="rounded-full px-7 py-2 bg-gradient-to-r from-red-500 to-red-700 text-white font-semibold shadow-[0_0_22px_rgba(255,60,60,0.7)] hover:scale-105 transition"
+                >
                   19.99 CHF
                 </button>
               </div>
             </div>
 
             {/* Custom */}
-            <div className="rounded-3xl bg-gradient-to-b from-[#232323] to-[#191919] p-6 flex flex-col ring-1 ring-blue-500/20 shadow-xl hover:translate-y-[-2px] transition">
+            <div className="rounded-3xl bg-gradient-to-b from-[#222222] to-[#181818] p-6 flex flex-col ring-1 ring-white/15 shadow-[0_0_20px_rgba(255,255,255,0.08)] hover:ring-white/30 transition">
               <h3 className="text-center text-white font-semibold mb-4 tracking-wide">
                 Custom
               </h3>
@@ -72,12 +92,14 @@ export default function AddServerPage() {
               </div>
 
               <div className="mt-auto flex justify-center pt-6">
-                <button className="rounded-full px-7 py-2 bg-gradient-to-r from-blue-500 to-blue-700 text-white font-semibold shadow-lg hover:scale-105 transition">
+                <button
+                  onClick={() => goCheckout("custom")}
+                  className="rounded-full px-7 py-2 bg-white/10 hover:bg-white/20 text-white font-semibold ring-1 ring-white/20 transition"
+                >
                   Customize
                 </button>
               </div>
             </div>
-
           </div>
         </div>
       </div>
