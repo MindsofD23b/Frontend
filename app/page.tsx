@@ -3,7 +3,7 @@ import { cinzel } from "./layout";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[linear-gradient(180deg,#b33d18_2%,#C72C00_17%,#4A0E00_70%,#0D0D0D_100%)] text-white">
+    <div className="min-h-screen bg-[linear-gradient(180deg,#0D0D0D_0.1%,#AB360B_17%,#4A0E00_70%,#0D0D0D_100%)] text-white">
       <div className="mx-auto max-w-6xl px-6 py-12 md:py-16">
 
         {/* TOP / TITLE */}
@@ -28,7 +28,7 @@ export default function Home() {
             </Link>
             <Link
               href="/login"
-              className="rounded-full bg-[#FF5E1E] px-5 py-2 text-sm font-semibold hover:brightness-110 transition"
+              className="rounded-full bg-[#a33b15] px-5 py-2 text-sm font-semibold hover:brightness-110 transition"
             >
               Login
             </Link>
@@ -190,7 +190,7 @@ export default function Home() {
         {/* TECH */}
         <div className="mt-16">
           <div className="rounded-3xl border border-white/10 bg-white/5 p-8">
-            <h2 className="text-2xl font-semibold">Tech (short but clear)</h2>
+            <h2 className="text-2xl font-semibold">Tech </h2>
             <p className="mt-3 text-gray-200 leading-relaxed">
               Nethr uses a modern setup with a dashboard and containerization.
               The frontend is built with React/Next + Tailwind,
@@ -218,7 +218,7 @@ export default function Home() {
         <div className="mt-16 text-center">
           <h3 className="text-2xl font-semibold">Ready?</h3>
           <p className="mt-3 text-gray-200">
-            Log in and start your first server – easy.
+            Log in and start your first server, easy.
           </p>
 
           <div className="mt-6 flex justify-center gap-3">
