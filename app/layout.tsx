@@ -1,5 +1,15 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { Inter, Cinzel } from "next/font/google";
+
+export const inter = Inter({
+  subsets: ["latin"],
+});
+
+export const cinzel = Cinzel({
+  subsets: ["latin"],
+  weight: ["600", "700"],
+});
 
 export const metadata: Metadata = {
   title: "Nether Command",
@@ -13,7 +23,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="h-full">
-      <body className="h-full bg-nether-wallpaper text-white">{children}</body>
+      <body className={`h-full bg-nether-wallpaper text-white ${inter.className}`}>
+        {children}
+      </body>
     </html>
   );
 }
