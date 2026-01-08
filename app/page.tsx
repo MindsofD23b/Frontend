@@ -239,8 +239,9 @@ export default function Home() {
 
         {/* FOOTER */}
         <div className="mt-16 border-t border-white/10 pt-6 text-center text-xs text-gray-400">
-          © {new Date().getFullYear()} Nethr - Minecraft Server Hosting & Management
+          © <span suppressHydrationWarning>{new Date().getFullYear()}</span> Nethr - Minecraft Server Hosting & Management
         </div>
+
 
       </div>
     </div>

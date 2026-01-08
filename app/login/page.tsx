@@ -29,7 +29,7 @@ export default function LoginPage() {
       }
 
       console.log("Logged in:", data);
-      window.location.href = "/Homepage";
+      window.location.href = "/home";
     } catch (err) {
       setError("Server unreachable");
     }
