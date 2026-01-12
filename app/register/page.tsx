@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { apiFetch } from "../service/apiClient";
 
 export default function RegisterPage() {
   const [email, setEmail] = useState("");
@@ -19,9 +20,8 @@ export default function RegisterPage() {
     }
 
     try {
-      const res = await fetch("http://localhost:5679/api/auth/register", {
+      const res = await apiFetch("/auth/register", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
       });
 
@@ -36,6 +36,7 @@ export default function RegisterPage() {
       window.location.href = "/login";
     } catch (err) {
       setError("Server unreachable");
+      console.error("Registration error:", err);
     }
   }
 
