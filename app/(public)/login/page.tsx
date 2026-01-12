@@ -2,16 +2,21 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { apiFetch } from "../service/apiClient";
-import { useAuthStore } from "../stores/auth";
+import { apiFetch } from "../../service/apiClient";
+import { useAuthStore } from "../../stores/auth";
+import { useSearchParams, useRouter } from "next/navigation";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+
   const setSession = useAuthStore((s) => s.setSession);
 
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const next = searchParams.get("next") ?? "/home";
 
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
@@ -23,72 +28,54 @@ export default function LoginPage() {
         body: JSON.stringify({ email, password }),
       });
 
-      const data = await res.json();
+      const data = await res.json().catch(() => ({} as any));
 
       if (!res.ok) {
-        setError(data.error || "Login failed");
+        setError(data?.error || "Login failed");
         return;
       }
 
-      // Erwartung: Backend liefert { token: "..." } (ggf. auch email/user)
-      const token = data.token;
+      const token = data?.token;
       if (!token) {
         setError("Login response missing token");
         return;
       }
 
-      setSession(token, data.email ?? email);
-
-      window.location.href = "/home";
-    } catch (err) {
+      setSession(token, data?.email ?? email);
+      router.replace(next);
+    } catch {
       setError("Server unreachable");
     }
   }
 
-
   return (
     <div className="min-h-screen overflow-hidden bg-[linear-gradient(180deg,#F23200_2%,#C72C00_17%,#4A0E00_70%,#0D0D0D_100%)] flex items-center justify-center">
       <div className="w-full max-w-6xl flex items-center justify-between px-6 md:px-10 lg:px-16">
-
-        {/* LEFT SIDE – Nether Fortress placeholder */}
         <div className="hidden md:block flex-1 relative h-[360px] lg:h-[420px]">
           {/* place image here later */}
         </div>
 
-        {/* RIGHT SIDE – LOGIN CARD */}
         <div className="flex-1 flex justify-center">
-          <div
-            className="w-full max-w-md rounded-[32px] bg-[#1F1F1F] px-8 py-10 lg:px-10 lg:py-12
-                       shadow-[0_18px_45px_rgba(0,0,0,0.7)]"
-          >
-            <h1 className="text-2xl font-semibold text-center mb-6">
-              Login
-            </h1>
+          <div className="w-full max-w-md rounded-[32px] bg-[#1F1F1F] px-8 py-10 lg:px-10 lg:py-12 shadow-[0_18px_45px_rgba(0,0,0,0.7)]">
+            <h1 className="text-2xl font-semibold text-center mb-6">Login</h1>
 
-            {/* ERROR MESSAGE */}
             {error && (
-              <p className="text-red-400 text-sm text-center mb-4">
-                {error}
-              </p>
+              <p className="text-red-400 text-sm text-center mb-4">{error}</p>
             )}
 
-            {/* FORM */}
             <form onSubmit={handleLogin} className="space-y-6">
-
-              {/* Email */}
               <div>
-                <label className="block text-sm mb-2 text-gray-200">
-                  Email
-                </label>
+                <label className="block text-sm mb-2 text-gray-200">Email</label>
                 <input
                   type="email"
+                  value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full rounded-full bg-[#2A2A2A] px-4 py-3 text-sm text-white placeholder:text-gray-400 outline-none border border-transparent focus:border-[#FF5E1E] focus:ring-2 focus:ring-[#FF5E1E]/60"
                   placeholder="Enter your email"
+                  required
                 />
               </div>
 
-              {/* Password */}
               <div>
                 <label className="block text-sm mb-2 text-gray-200">
                   Password
@@ -97,18 +84,20 @@ export default function LoginPage() {
                 <div className="relative">
                   <input
                     type={showPassword ? "text" : "password"}
+                    value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     className="w-full rounded-full bg-[#2A2A2A] px-4 py-3 pr-12 text-sm text-white placeholder:text-gray-400 outline-none border border-transparent focus:border-[#FF5E1E] focus:ring-2 focus:ring-[#FF5E1E]/60"
                     placeholder="Enter your password"
+                    required
                   />
 
                   <button
                     type="button"
-                    onClick={() => setShowPassword(!showPassword)}
+                    onClick={() => setShowPassword((v) => !v)}
                     className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white"
+                    aria-label={showPassword ? "Hide password" : "Show password"}
                   >
                     {showPassword ? (
-                      // eye-off icon
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -124,7 +113,6 @@ export default function LoginPage() {
                         />
                       </svg>
                     ) : (
-                      // eye icon
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -149,18 +137,14 @@ export default function LoginPage() {
                 </div>
               </div>
 
-
-              {/* LOGIN BUTTON */}
               <button
                 type="submit"
-                className="mt-2 w-full rounded-full bg-[#FF5E1E] py-3 text-sm font-semibold
-                           text-white hover:brightness-110 transition"
+                className="mt-2 w-full rounded-full bg-[#FF5E1E] py-3 text-sm font-semibold text-white hover:brightness-110 transition"
               >
                 Login
               </button>
             </form>
 
-            {/* LINKS */}
             <div className="mt-6 text-xs text-gray-300 leading-relaxed">
               <p>
                 Forgot your password? Click{" "}
@@ -169,7 +153,8 @@ export default function LoginPage() {
                   className="text-[#FF5E1E] hover:underline"
                 >
                   here
-                </Link>.
+                </Link>
+                .
               </p>
 
               <p className="mt-3">
@@ -179,10 +164,10 @@ export default function LoginPage() {
                   className="text-[#FF5E1E] hover:underline"
                 >
                   here
-                </Link>.
+                </Link>
+                .
               </p>
             </div>
-
           </div>
         </div>
       </div>

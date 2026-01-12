@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { apiFetch } from "../service/apiClient";
+import { apiFetch } from "../../service/apiClient";
 
 export default function RegisterPage() {
   const [email, setEmail] = useState("");
