@@ -18,7 +18,7 @@ function NavItem({
       href={disabled ? "#" : href}
       aria-disabled={disabled ? "true" : "false"}
       className={[
-        "rounded-2xl transition px-4 py-2 text-base",
+        "rounded-2xl transition px-3 sm:px-4 py-2 text-sm sm:text-base",
         disabled
           ? "text-white/30 cursor-not-allowed pointer-events-none"
           : "text-white/80 hover:text-white hover:bg-[#1F1F1F]",
@@ -40,11 +40,20 @@ export default function Sidebar({
   const router = useRouter();
 
   const isHomeActive = pathname === "/home" || pathname?.startsWith("/home/");
-  const faded = homeMenuOpen; // when menu open -> fade profile/about
+  const faded = homeMenuOpen;
 
   return (
-    <div className="h-full w-[260px] rounded-3xl bg-[#2A2A2A] p-5 flex flex-col">
-      {/* HOME header (click toggles menu) */}
+    <div
+      className="
+        h-full
+        w-full sm:w-[260px]
+        rounded-3xl
+        bg-[#2A2A2A]
+        p-4 sm:p-5
+        flex flex-col
+      "
+    >
+      {/* HOME header */}
       <button
         type="button"
         onClick={() => {
@@ -52,13 +61,17 @@ export default function Sidebar({
           router.push("/home");
         }}
         className={[
-          "w-full text-left rounded-2xl px-4 py-3 transition",
+          "w-full text-left rounded-2xl px-3 sm:px-4 py-3 transition",
           isHomeActive ? "bg-[#1F1F1F]" : "hover:bg-[#1F1F1F]",
         ].join(" ")}
       >
         <div className="flex items-center justify-between">
-          <div className="text-white/90 text-lg font-semibold">Home</div>
-          <div className="text-white/60 text-sm">{homeMenuOpen ? "—" : "+"}</div>
+          <div className="text-white/90 text-base sm:text-lg font-semibold">
+            Home
+          </div>
+          <div className="text-white/60 text-sm">
+            {homeMenuOpen ? "—" : "+"}
+          </div>
         </div>
         <div className="text-white/50 text-xs mt-1">Servers & actions</div>
       </button>
@@ -76,8 +89,13 @@ export default function Sidebar({
         </div>
       )}
 
-      {/* Profile / About (fade when home menu open) */}
-      <div className={["mt-6 flex flex-col gap-3 transition", faded ? "opacity-30" : "opacity-100"].join(" ")}>
+      {/* Profile / About */}
+      <div
+        className={[
+          "mt-6 flex flex-col gap-2 sm:gap-3 transition",
+          faded ? "opacity-30" : "opacity-100",
+        ].join(" ")}
+      >
         <NavItem href="/home/profile" label="Profile" disabled={faded} />
         <NavItem href="/home/about-us" label="About Us" disabled={faded} />
       </div>
