@@ -44,10 +44,20 @@ export default function RegisterPage() {
   return (
     <div className="min-h-screen overflow-hidden bg-[linear-gradient(180deg,#F23200_2%,#C72C00_17%,#4A0E00_70%,#0D0D0D_100%)] flex items-center justify-center">
       <div className="w-full max-w-6xl flex items-center justify-between px-6 md:px-10 lg:px-16">
-        {/* LEFT SIDE – Nether Fortress placeholder */}
-        <div className="hidden md:block flex-1 relative h-[360px] lg:h-[420px]">
-          {/* place image here later */}
-        </div>
+       {/* LEFT SIDE – Nether Fortress (GIF or video) */}
+<div className="hidden md:block flex-1 relative h-[360px] lg:h-[420px] overflow-hidden rounded-3xl ring-1 ring-white/10">
+  <img
+    src="/Hungry_Lets_Go_GIF_by_Minecraft.gif"
+    alt="Hungry Lets Go GIF by Minecraft"
+    className="absolute inset-0 h-full w-full object-cover"
+  />
+
+  {/* Dark overlay */}
+  <div className="absolute inset-0 bg-black/25" />
+
+  {/* Optional glow gradient */}
+  <div className="absolute inset-0 bg-linear-to-tr from-black/60 via-transparent to-transparent" />
+</div>
 
         {/* RIGHT SIDE – REGISTER CARD */}
         <div className="flex-1 flex justify-center">
