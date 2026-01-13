@@ -51,11 +51,11 @@ export default function DeleteServerPage() {
   return (
     <>
       {/* HEADER */}
-      <div className="h-auto sm:h-20 rounded-2xl bg-[#2A2A2A] px-4 sm:px-6 py-4 sm:py-0 flex items-center">
-        <div className="text-white text-base sm:text-lg font-semibold">
-          Delete Server
+      <div className=" rounded-2xl sm:px-6 py-4 bg-[#2A2A2A] sm:py-0 flex items-center justify-center ">
+          <div className="text-white/90 text-base sm:text-lg font-semibold tracking-wide">
+            Delete Server
+          </div>
         </div>
-      </div>
 
       {/* CONTENT */}
       <div className="flex-1 rounded-2xl bg-[#2A2A2A] p-4 sm:p-6 overflow-auto">

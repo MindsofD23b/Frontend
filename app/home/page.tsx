@@ -8,10 +8,14 @@ export default function HomePage() {
   return (
     <>
       {/* HEADER */}
-      <div className="h-auto sm:h-20 rounded-2xl bg-[#2A2A2A] px-4 sm:px-6 py-4 sm:py-0 flex items-center">
-        <div className="text-white text-base sm:text-lg font-semibold">
-          Current Servers
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 overflow-hidden">
+        <div className="flex-1 h-auto sm:h-20 rounded-2xl bg-gradient-to-r  px-4 sm:px-6 py-4 sm:py-0 flex items-center justify-center shadow-inner bg-[#2A2A2A] ">
+          <div className="text-white/90 text-base sm:text-lg font-semibold tracking-wide">
+          Current Server
+          </div>
         </div>
+
+        
       </div>
 
       {/* LIST */}
