@@ -7,22 +7,28 @@ import LogoutButton from "../logoutbutton";
 function NavItem({
   href,
   label,
-  disabled,
+  onClick,
+  active,
+  indent = false,
 }: {
   href: string;
   label: string;
-  disabled?: boolean;
+  onClick?: () => void;
+  active?: boolean;
+  indent?: boolean;
 }) {
   return (
     <Link
-      href={disabled ? "#" : href}
-      aria-disabled={disabled ? "true" : "false"}
+      href={href}
+      onClick={() => onClick?.()}
       className={[
-        "rounded-2xl transition px-3 sm:px-4 py-2 text-sm sm:text-base",
-        disabled
-          ? "text-white/30 cursor-not-allowed pointer-events-none"
+        "rounded-2xl transition px-3 sm:px-4 py-2 text-sm sm:text-base block",
+        indent ? "pl-6 sm:pl-7" : "",
+        active
+          ? "bg-[#1F1F1F] text-white"
           : "text-white/80 hover:text-white hover:bg-[#1F1F1F]",
       ].join(" ")}
+      aria-current={active ? "page" : undefined}
     >
       {label}
     </Link>
@@ -32,72 +38,105 @@ function NavItem({
 export default function Sidebar({
   homeMenuOpen,
   setHomeMenuOpen,
+  onNavigate,
 }: {
-  homeMenuOpen: boolean;
+  homeMenuOpen: boolean; // NOTE: only used as "Home submenu expanded"
   setHomeMenuOpen: (v: boolean) => void;
+  onNavigate?: () => void; // closes mobile drawer
 }) {
   const pathname = usePathname();
   const router = useRouter();
 
-  const isHomeActive = pathname === "/home" || pathname?.startsWith("/home/");
-  const faded = homeMenuOpen;
+  // active helpers
+  const isHomeRoot = pathname === "/home";
+  const isHomeSection = pathname === "/home" || pathname?.startsWith("/home/");
+  const isSub = (p: string) => pathname === p;
+
+  
 
   return (
-    <div
-      className="
-        h-full
-        w-full sm:w-[260px]
-        rounded-3xl
-        bg-[#2A2A2A]
-        p-4 sm:p-5
-        flex flex-col
-      "
-    >
+    <div className="h-full w-full sm:w-[260px] rounded-3xl bg-[#2A2A2A] p-4 sm:p-5 flex flex-col">
       {/* HOME header */}
       <button
-        type="button"
-        onClick={() => {
-          setHomeMenuOpen(!homeMenuOpen);
-          router.push("/home");
-        }}
+     
+  type="button"
+  onClick={() => {
+    setHomeMenuOpen(!homeMenuOpen);
+    router.push("/home");
+  }}
+
+
         className={[
           "w-full text-left rounded-2xl px-3 sm:px-4 py-3 transition",
-          isHomeActive ? "bg-[#1F1F1F]" : "hover:bg-[#1F1F1F]",
+          isHomeRoot ? "bg-[#1F1F1F]" : "hover:bg-[#1F1F1F]",
         ].join(" ")}
-      >
+    >
         <div className="flex items-center justify-between">
           <div className="text-white/90 text-base sm:text-lg font-semibold">
             Home
           </div>
-          <div className="text-white/60 text-sm">
-            {homeMenuOpen ? "—" : "+"}
-          </div>
+          <div className="text-white/60 text-sm">{homeMenuOpen ? "—" : "+"}</div>
         </div>
         <div className="text-white/50 text-xs mt-1">Servers & actions</div>
       </button>
 
-      {/* HOME submenu */}
-      {homeMenuOpen && (
-        <div className="mt-3 rounded-2xl border border-white/10 bg-white/5 p-3">
-          <div className="flex flex-col gap-2">
-            <NavItem href="/home/add-server" label="Add Server" />
-            <NavItem href="/home/delete-server" label="Delete Server" />
-            <NavItem href="/home/stop-all" label="Stop All Servers" />
-            <div className="h-px bg-white/10 my-1" />
-            <NavItem href="/home/payment" label="Payment Method" />
-          </div>
-        </div>
-      )}
-
-      {/* Profile / About */}
+      {/* HOME submenu group */}
       <div
         className={[
-          "mt-6 flex flex-col gap-2 sm:gap-3 transition",
-          faded ? "opacity-30" : "opacity-100",
+          "mt-3 rounded-2xl border border-white/10 bg-[#242424] transition-all",
+          homeMenuOpen ? "opacity-100 max-h-[320px] p-3" : "opacity-0 max-h-0 p-0 overflow-hidden",
         ].join(" ")}
       >
-        <NavItem href="/home/profile" label="Profile" disabled={faded} />
-        <NavItem href="/home/about-us" label="About Us" disabled={faded} />
+        {/* Group marker so it looks connected */}
+        <div className="flex flex-col gap-1 border-l-2 border-white/10 pl-2">
+          <NavItem
+            href="/home/add-server"
+            label="Add Server"
+            onClick={onNavigate}
+            active={isSub("/home/add-server")}
+            indent
+          />
+          <NavItem
+            href="/home/delete-server"
+            label="Delete Server"
+            onClick={onNavigate}
+            active={isSub("/home/delete-server")}
+            indent
+          />
+          <NavItem
+            href="/home/stop-all"
+            label="Stop All Servers"
+            onClick={onNavigate}
+            active={isSub("/home/stop-all")}
+            indent
+          />
+
+          <div className="h-px bg-white/10 my-2" />
+
+          <NavItem
+            href="/home/payment"
+            label="Payment Method"
+            onClick={onNavigate}
+            active={isSub("/home/payment")}
+            indent
+          />
+        </div>
+      </div>
+
+      {/* Profile / About */}
+      <div className="mt-6 flex flex-col gap-2 sm:gap-3">
+        <NavItem
+          href="/home/profile"
+          label="Profile"
+          onClick={onNavigate}
+          active={isSub("/home/profile")}
+        />
+        <NavItem
+          href="/home/about-us"
+          label="About Us"
+          onClick={onNavigate}
+          active={isSub("/home/about-us")}
+        />
       </div>
 
       {/* Logout */}

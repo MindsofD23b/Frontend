@@ -3,11 +3,12 @@ export default function ProfilePage() {
     <>
       {/* HEADER */}
       
-        <div className=" rounded-2xl sm:px-6 py-4 bg-[#2A2A2A] sm:py-0 flex items-center justify-center ">
-          <div className="text-white/90 text-base sm:text-lg font-semibold tracking-wide">
-            Profile
-          </div>
-        </div>
+        <div className="relative rounded-2xl bg-[#2A2A2A]  px-4 sm:px-6 py-4 sm:py-5 mb-4 sm:mb-6 flex items-center justify-center">
+  <div className="text-white/90 text-base sm:text-lg font-semibold tracking-wide">
+    Profile
+  </div>
+</div>
+
       
 
       {/* CONTENT */}

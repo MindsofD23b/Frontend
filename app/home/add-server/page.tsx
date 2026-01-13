@@ -242,11 +242,11 @@ export default function AddServerPage() {
   return (
     <>
       {/* Top Bar */}
-      <div className=" rounded-2xl sm:px-6 py-4 bg-[#2A2A2A] sm:py-0 flex items-center justify-center ">
-          <div className="text-white/90 text-base sm:text-lg font-semibold tracking-wide">
-            Add Server
-          </div>
-        </div>
+      <div className="relative rounded-2xl bg-[#2A2A2A] shadow-inner px-4 sm:px-6 py-4 sm:py-5 mb-4 sm:mb-6 flex items-center justify-center">
+  <div className="text-white/90 text-base sm:text-lg font-semibold tracking-wide">
+    Add Server
+  </div>
+</div>
 
       {/* Main Panel */}
       <div className="flex-1 min-h-0 rounded-2xl  backdrop-blur-xl p-4 sm:p-6 bg-[#2A2A2A] shadow-2xl overflow-x-hidden">
@@ -257,7 +257,7 @@ export default function AddServerPage() {
             <div className="flex items-center justify-between gap-3">
               <button
                 onClick={prev}
-                className="h-11 w-11 rounded-full bg-white/10 hover:bg-white/15 ring-1 ring-white/15 text-white transition active:scale-95"
+                className="h-11 w-11 rounded-full bg-white/10 hover:bg-white/15  text-white transition active:scale-95"
                 aria-label="Previous plan"
               >
                 ◀
@@ -283,7 +283,7 @@ export default function AddServerPage() {
 
               <button
                 onClick={next}
-                className="h-11 w-11 rounded-full bg-white/10 hover:bg-white/15 ring-1 ring-white/15 text-white transition active:scale-95"
+                className="h-11 w-11 rounded-full bg-white/10 hover:bg-white/15  text-white transition active:scale-95"
                 aria-label="Next plan"
               >
                 ▶
