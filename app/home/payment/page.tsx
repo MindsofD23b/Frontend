@@ -137,10 +137,10 @@
 
         {/* Main Panel */}
         <div className="flex-1 rounded-2xl  bg-[#2A2A2A] backdrop-blur-xl p-4 sm:p-6 ">
-          <div className="h-full rounded-3xl bg-gradient-to-br  p-4 sm:p-6  grid grid-cols-1 lg:grid-cols-2 gap-6 h-full">
+          <div className="h-full rounded-3xl bg-linear-to-br  p-4 sm:p-6  grid grid-cols-1 lg:grid-cols-2 gap-6">
             
               {/* LEFT: Saved Method */}
-              <div className="rounded-3xl bg-gradient-to-b  p-4 sm:p-6 flex flex-col ">
+              <div className="rounded-3xl bg-linear-to-b  p-4 sm:p-6 flex flex-col ">
                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
                   <h3 className="text-white font-semibold tracking-wide">
                     Saved Payment
@@ -167,7 +167,7 @@
                   ) : method.type === "card" ? (
                     <>
                       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-                        <div className="text-white font-semibold text-base sm:text-lg break-words">
+                        <div className="text-white font-semibold text-base sm:text-lg wrap-break-words">
                           •••• •••• •••• {method.last4}
                         </div>
                         <BrandBadge brand={method.brand} />
@@ -176,7 +176,7 @@
                       <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
                         <div className="rounded-2xl bg-white/5  p-4">
                           <div className="text-white/50 text-xs">Card Holder</div>
-                          <div className="mt-1 text-white/85 font-semibold break-words">
+                          <div className="mt-1 text-white/85 font-semibold wrap-break-words">
                             {method.holderName}
                           </div>
                         </div>
@@ -206,7 +206,7 @@
 
                       <div className="mt-4 rounded-2xl bg-white/5  p-4">
                         <div className="text-white/50 text-xs">Email</div>
-                        <div className="mt-1 text-white/85 font-semibold break-words">
+                        <div className="mt-1 text-white/85 font-semibold wrap-break-words">
                           {method.email}
                         </div>
                       </div>
@@ -230,7 +230,7 @@
               </div>
 
               {/* RIGHT: Add/Update Method */}
-              <div className="rounded-3xl bg-gradient-to-b  p-4 sm:p-6 flex flex-col">
+              <div className="rounded-3xl bg-linear-to-b  p-4 sm:p-6 flex flex-col">
                 <div className="flex items-start justify-between">
                   <h3 className="text-white font-semibold tracking-wide">
                     Add / Update
@@ -253,7 +253,7 @@
                     className={[
                       "w-full sm:w-auto rounded-full px-5 py-2 text-sm font-semibold  transition",
                       tab === "card"
-                        ? "bg-gradient-to-r from-orange-400 to-orange-600 text-white ring-orange-400/40 shadow-[0_0_18px_rgba(255,140,60,0.45)]"
+                        ? "bg-linear-to-r from-orange-400 to-orange-600 text-white ring-orange-400/40 shadow-[0_0_18px_rgba(255,140,60,0.45)]"
                         : "bg-white/5 text-white/70 ring-white/10 hover:bg-white/10",
                     ].join(" ")}
                   >
@@ -266,7 +266,7 @@
                     className={[
                       "w-full sm:w-auto rounded-full px-5 py-2 text-sm font-semibold ring-1 transition",
                       tab === "paypal"
-                        ? "bg-gradient-to-r from-red-500 to-red-700 text-white ring-red-400/40 shadow-[0_0_18px_rgba(255,60,60,0.5)]"
+                        ? "bg-linear-to-r from-red-500 to-red-700 text-white ring-red-400/40 shadow-[0_0_18px_rgba(255,60,60,0.5)]"
                         : "bg-white/5 text-white/70 ring-white/10 hover:bg-white/10",
                     ].join(" ")}
                   >
@@ -353,7 +353,7 @@
                       <button
                         type="button"
                         onClick={saveCard}
-                        className="w-full sm:w-auto rounded-full px-7 py-2 bg-gradient-to-r from-orange-400 to-orange-600 text-white font-semibold shadow-[0_0_18px_rgba(255,140,60,0.6)] hover:scale-[1.02] transition"
+                        className="w-full sm:w-auto rounded-full px-7 py-2 bg-linear-to-r from-orange-400 to-orange-600 text-white font-semibold shadow-[0_0_18px_rgba(255,140,60,0.6)] hover:scale-[1.02] transition"
                       >
                         Save Card
                       </button>
@@ -387,7 +387,7 @@
                       <button
                         type="button"
                         onClick={savePaypal}
-                        className="w-full sm:w-auto rounded-full px-7 py-2 bg-gradient-to-r from-red-500 to-red-700 text-white font-semibold shadow-[0_0_18px_rgba(255,60,60,0.55)] hover:scale-[1.02] transition"
+                        className="w-full sm:w-auto rounded-full px-7 py-2 bg-linear-to-r from-red-500 to-red-700 text-white font-semibold shadow-[0_0_18px_rgba(255,60,60,0.55)] hover:scale-[1.02] transition"
                       >
                         Save PayPal
                       </button>

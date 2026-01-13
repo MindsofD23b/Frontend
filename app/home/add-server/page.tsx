@@ -53,7 +53,7 @@ function PlanCard({ plan }: { plan: Plan }) {
   return (
     // ✅ min-h-0 so it never forces parent taller
     <div
-      className={`relative rounded-3xl bg-gradient-to-b from-[#242424] to-[#1A1A1A] p-5 flex flex-col ${accentRing} min-h-0`}
+      className={`relative rounded-3xl bg-linear-to-b from-[#242424] to-[#1A1A1A] p-5 flex flex-col ${accentRing} min-h-0`}
     >
       {plan.recommended && (
         <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-red-500 px-4 py-1 text-xs font-semibold text-white shadow-[0_0_15px_rgba(255,60,60,0.8)]">
@@ -105,7 +105,7 @@ function PlanCard({ plan }: { plan: Plan }) {
         </div>
 
         {plan.key === "custom" && (
-          <div className="rounded-2xl bg-gradient-to-r from-[#0f0f0f] to-[#1a1a1a] ring-1 ring-white/10 p-4">
+          <div className="rounded-2xl bg-linear-to-r from-[#0f0f0f] to-[#1a1a1a] ring-1 ring-white/10 p-4">
             <div className="text-xs text-white/50">Perfect for</div>
             <p className="mt-2 text-sm text-white/70">
               Networks, special modpacks, performance-heavy worlds, or anything
@@ -251,7 +251,7 @@ export default function AddServerPage() {
       {/* Main Panel */}
       <div className="flex-1 min-h-0 rounded-2xl  backdrop-blur-xl p-4 sm:p-6 bg-[#2A2A2A] shadow-2xl overflow-x-hidden">
         {/* ✅ overflow-hidden here clips glows so nothing can “stick out” */}
-        <div className="h-full min-h-0 rounded-3xl bg-gradient-to-br  p-4 sm:p-6overflow-x-hidden">
+        <div className="h-full min-h-0 rounded-3xl bg-linear-to-br  p-4 sm:p-6overflow-x-hidden">
           {/* MOBILE */}
           <div className="lg:hidden flex flex-col gap-4 min-h-0">
             <div className="flex items-center justify-between gap-3">

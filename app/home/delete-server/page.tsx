@@ -73,7 +73,7 @@ export default function DeleteServerPage() {
             >
               <div className="min-w-0">
                 <div className="text-white font-semibold truncate">{s.name}</div>
-                <div className="text-xs text-white/60 mt-1 break-words">
+                <div className="text-xs text-white/60 mt-1 wrap-break-words">
                   {s.version} • {s.region} • Max {s.maxPlayers}
                 </div>
               </div>

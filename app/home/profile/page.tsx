@@ -23,7 +23,7 @@ export default function ProfilePage() {
           <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="rounded-2xl border border-white/10 bg-white/5 p-4 sm:p-5">
               <div className="text-sm text-white/60">Email</div>
-              <div className="mt-1 text-white font-semibold break-words">—</div>
+              <div className="mt-1 text-white font-semibold wrap-break-words">—</div>
             </div>
 
             <div className="rounded-2xl border border-white/10 bg-white/5 p-4 sm:p-5">

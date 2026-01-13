@@ -50,14 +50,30 @@ export default function LoginPage() {
       <div className="w-full max-w-6xl flex items-center justify-between px-6 md:px-10 lg:px-16">
 
         {/* LEFT SIDE – Nether Fortress placeholder */}
-        <div className="hidden md:block flex-1 relative h-[360px] lg:h-[420px]">
-          {/* place image here later */}
-        </div>
+        <div className="hidden md:block flex-1 relative h-[360px] lg:h-[420px] overflow-hidden rounded-3xl ring-1 ring-white/10">
+  <video
+    className="absolute inset-0 h-full w-full object-cover"
+    autoPlay
+    muted
+    loop
+    playsInline
+    preload="metadata"
+  >
+    <source src="/Test_video.webm" type="video/webm" />
+    <source src="/Test_video.mp4" type="video/mp4" />
+  </video>
+
+  {/* Dark overlay so text stays readable if you ever add text here */}
+  <div className="absolute inset-0 bg-black/25" />
+
+  {/* Optional glow gradient */}
+  <div className="absolute inset-0 bg-linear-to-tr from-black/60 via-transparent to-transparent" />
+</div>
 
         {/* RIGHT SIDE – LOGIN CARD */}
         <div className="flex-1 flex justify-center">
           <div
-            className="w-full max-w-md rounded-[32px] bg-[#1F1F1F] px-8 py-10 lg:px-10 lg:py-12
+            className="w-full max-w-md rounded-4xl bg-[#1F1F1F] px-8 py-10 lg:px-10 lg:py-12
                        shadow-[0_18px_45px_rgba(0,0,0,0.7)]"
           >
             <h1 className="text-2xl font-semibold text-center mb-6">

@@ -35,7 +35,7 @@ export default function HomePage() {
                     {s.name}
                   </div>
 
-                  <div className="mt-2 text-[11px] sm:text-xs text-white/70 leading-relaxed break-words">
+                  <div className="mt-2 text-[11px] sm:text-xs text-white/70 leading-relaxed wrap-break-words">
                     {s.version} • {s.region} • {s.ramGb}GB RAM • {s.cpuCores} CPU •
                     Max {s.maxPlayers} players{s.modded ? " • Modded" : ""}
                   </div>

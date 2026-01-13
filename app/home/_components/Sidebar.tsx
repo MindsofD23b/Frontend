@@ -84,7 +84,7 @@ export default function Sidebar({
       <div
         className={[
           "mt-3 rounded-2xl border border-white/10 bg-[#242424] transition-all",
-          homeMenuOpen ? "opacity-100 max-h-[320px] p-3" : "opacity-0 max-h-0 p-0 overflow-hidden",
+          homeMenuOpen ? "opacity-100 max-h-80 p-3" : "opacity-0 max-h-0 p-0 overflow-hidden",
         ].join(" ")}
       >
         {/* Group marker so it looks connected */}
