@@ -20,7 +20,7 @@ export default function AddServerPage() {
   return (
     <>
       {/* Top Bar */}
-      <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 overflow-hidden">
         <div className="flex-1 h-auto sm:h-20 rounded-2xl bg-gradient-to-r from-[#1C1C1C] to-[#232323] px-4 sm:px-6 py-4 sm:py-0 flex items-center justify-center shadow-inner ring-1 ring-white/10">
           <div className="text-white/90 text-base sm:text-lg font-semibold tracking-wide">
             Add Server
