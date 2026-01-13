@@ -151,7 +151,7 @@ export default function AddServerPage() {
           "Best for a small friend group. Simple, stable, and cheap – perfect for survival worlds.",
         priceLabel: "9.99 CHF",
         onClick: () =>
-          router.push("https://buy.stripe.com/test_bJe7sKcwHfMU4S8b098Vi00"),
+          router.push("https://buy.stripe.com/test_bJe14m9kvgQY0BS2tD8Vi02"),
         specs: [
           { label: "RAM", value: "16 GB" },
           { label: "CPU", value: "2 vCores" },
