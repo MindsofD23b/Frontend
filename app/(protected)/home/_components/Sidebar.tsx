@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import LogoutButton from "../logoutbutton";
+import { apiFetch } from "@/app/service/apiClient";
 
 function NavItem({
   href,
@@ -52,25 +53,25 @@ export default function Sidebar({
   const isHomeSection = pathname === "/home" || pathname?.startsWith("/home/");
   const isSub = (p: string) => pathname === p;
 
-  
+
 
   return (
     <div className="h-full w-full sm:w-[260px] rounded-3xl bg-[#2A2A2A] p-4 sm:p-5 flex flex-col">
       {/* HOME header */}
       <button
-     
-  type="button"
-  onClick={() => {
-    setHomeMenuOpen(!homeMenuOpen);
-    router.push("/home");
-  }}
+
+        type="button"
+        onClick={() => {
+          setHomeMenuOpen(!homeMenuOpen);
+          router.push("/home");
+        }}
 
 
         className={[
           "w-full text-left rounded-2xl px-3 sm:px-4 py-3 transition",
           isHomeRoot ? "bg-[#1F1F1F]" : "hover:bg-[#1F1F1F]",
         ].join(" ")}
-    >
+      >
         <div className="flex items-center justify-between">
           <div className="text-white/90 text-base sm:text-lg font-semibold">
             Home
@@ -104,10 +105,12 @@ export default function Sidebar({
             indent
           />
           <NavItem
-            href="/home/stop-all"
+            href="/home"
             label="Stop All Servers"
-            onClick={onNavigate}
-            active={isSub("/home/stop-all")}
+            onClick={async () => {
+              await apiFetch("/servers/stop", { method: "POST" })
+              router.push("/home");
+            }}
             indent
           />
 

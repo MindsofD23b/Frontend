@@ -2,12 +2,13 @@
 
 import React, { createContext, useContext, useEffect, useMemo, useState } from "react";
 import type { PaymentMethod, Server } from "./types";
+import { apiFetch } from "@/app/service/apiClient";
 
 type AppState = {
   servers: Server[];
-  addServer: (s: Omit<Server, "id" | "running">) => void;
+  addServer: (s: Omit<Server, "id" | "status">) => void;
   deleteServer: (id: string) => void;
-  setRunning: (id: string, running: boolean) => void;
+  setRunning: (id: string, status: string) => void;
   stopAll: () => void;
 
   payment: PaymentMethod;
@@ -17,41 +18,15 @@ type AppState = {
 const STORAGE_SERVERS = "nethr_servers_v1";
 const STORAGE_PAYMENT = "nethr_payment_v1";
 
-const defaultServers: Server[] = [
-  {
-    id: "super-earth",
-    name: "Super Earth Survival",
-    maxPlayers: 20,
-    version: "1.20.4",
-    ramGb: 4,
-    cpuCores: 2,
-    modded: false,
-    region: "EU",
-    running: true,
-  },
-  {
-    id: "survival",
-    name: "Survival Minecraft World",
-    maxPlayers: 10,
-    version: "1.21",
-    ramGb: 3,
-    cpuCores: 2,
-    modded: false,
-    region: "EU",
-    running: false,
-  },
-  {
-    id: "creative",
-    name: "Creative Test World",
-    maxPlayers: 5,
-    version: "1.20.1",
-    ramGb: 2,
-    cpuCores: 1,
-    modded: false,
-    region: "US",
-    running: false,
-  },
-];
+const defaultServers: Server[] = await fetch_server();
+
+async function fetch_server() {
+  const res = await apiFetch("/servers", { method: "GET" });
+
+  const data = await res.json();
+
+  return data.servers;
+}
 
 const AppCtx = createContext<AppState | null>(null);
 
@@ -108,7 +83,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
           ...prev,
           {
             id,
-            running: false,
+            status: "STOPPED",
             ...s,
           },
         ]);
@@ -118,12 +93,12 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         setServers((prev) => prev.filter((x) => x.id !== id));
       },
 
-      setRunning: (id, running) => {
-        setServers((prev) => prev.map((x) => (x.id === id ? { ...x, running } : x)));
+      setRunning: (id, status) => {
+        setServers((prev) => prev.map((x) => (x.id === id ? { ...x, status } : x)));
       },
 
       stopAll: () => {
-        setServers((prev) => prev.map((x) => ({ ...x, running: false })));
+        setServers((prev) => prev.map((x) => ({ ...x, status: "STOPPED" })));
       },
 
       payment,
