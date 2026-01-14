@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import LogoutButton from "../logoutbutton";
 import { apiFetch } from "@/app/service/apiClient";
+import { useApp } from "../_state/AppProvider";
 
 function NavItem({
   href,
@@ -45,6 +46,7 @@ export default function Sidebar({
   setHomeMenuOpen: (v: boolean) => void;
   onNavigate?: () => void; // closes mobile drawer
 }) {
+  const { stopAll } = useApp();
   const pathname = usePathname();
   const router = useRouter();
 
@@ -109,7 +111,7 @@ export default function Sidebar({
             label="Stop All Servers"
             onClick={async () => {
               await apiFetch("/servers/stop", { method: "POST" })
-              router.push("/home");
+              stopAll();
             }}
             indent
           />
