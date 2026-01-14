@@ -89,8 +89,9 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         ]);
       },
 
-      deleteServer: (id) => {
+      deleteServer: async (id) => {
         setServers((prev) => prev.filter((x) => x.id !== id));
+        await apiFetch(`/servers/${id}`, { method: "DELETE" });
       },
 
       setRunning: (id, status) => {
