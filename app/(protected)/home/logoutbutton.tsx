@@ -2,11 +2,15 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { useAuthStore } from "@/app/stores/auth";
 
 export default function LogoutButton() {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const cancelRef = useRef<HTMLButtonElement | null>(null);
+
+
+  const logout = useAuthStore((s) => s.logout)
 
   // ESC schliesst Modal
   useEffect(() => {
@@ -24,8 +28,9 @@ export default function LogoutButton() {
   }, [open]);
 
   const handleLogout = () => {
-    // TODO: optional token/cookie cleanup / logout endpoint call
+    
     setOpen(false);
+    logout();
     router.push("/login");
   };
 
