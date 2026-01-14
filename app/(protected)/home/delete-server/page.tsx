@@ -52,10 +52,10 @@ export default function DeleteServerPage() {
     <>
       {/* HEADER */}
       <div className="relative rounded-2xl bg-[#2A2A2A]  px-4 sm:px-6 py-4 sm:py-5 mb-4 sm:mb-6 flex items-center justify-center">
-  <div className="text-white/90 text-base sm:text-lg font-semibold tracking-wide">
-    Delete Server
-  </div>
-</div>
+        <div className="text-white/90 text-base sm:text-lg font-semibold tracking-wide">
+          Delete Server
+        </div>
+      </div>
 
 
       {/* CONTENT */}
@@ -74,7 +74,7 @@ export default function DeleteServerPage() {
               <div className="min-w-0">
                 <div className="text-white font-semibold truncate">{s.name}</div>
                 <div className="text-xs text-white/60 mt-1 wrap-break-words">
-                  {s.version} • {s.region} • Max {s.maxPlayers}
+                  {s.minecraftVersion}
                 </div>
               </div>
 

@@ -9,10 +9,10 @@ export default function HomePage() {
     <>
       {/* HEADER */}
       <div className="relative rounded-2xl bg-[#2A2A2A] px-4 sm:px-6 py-4 sm:py-5 mb-4 sm:mb-6 flex items-center justify-center">
-  <div className="text-white/90 text-base sm:text-lg font-semibold tracking-wide">
-    Current Servers
-  </div>
-</div>
+        <div className="text-white/90 text-base sm:text-lg font-semibold tracking-wide">
+          Current Servers
+        </div>
+      </div>
 
       {/* LIST */}
       <div className="flex-1 rounded-2xl bg-[#2A2A2A] p-4 sm:p-6 overflow-auto">
@@ -36,8 +36,7 @@ export default function HomePage() {
                   </div>
 
                   <div className="mt-2 text-[11px] sm:text-xs text-white/70 leading-relaxed wrap-break-words">
-                    {s.version} • {s.region} • {s.ramGb}GB RAM • {s.cpuCores} CPU •
-                    Max {s.maxPlayers} players{s.modded ? " • Modded" : ""}
+                    {s.minecraftVersion}
                   </div>
                 </div>
 
@@ -45,16 +44,16 @@ export default function HomePage() {
                 <div className="flex justify-end sm:justify-center">
                   <button
                     type="button"
-                    onClick={() => setRunning(s.id, !s.running)}
+                    onClick={() => setRunning(s.id, s.status == "RUNNING" ? "STOPPED" : "RUNNING")}
                     className={[
                       "h-12 w-12 rounded-full flex items-center justify-center transition shrink-0",
-                      s.running
+                      s.status == "RUNNING"
                         ? "bg-emerald-500 hover:brightness-110"
                         : "bg-emerald-500/80 hover:brightness-110",
                     ].join(" ")}
-                    aria-label={s.running ? "Stop server" : "Start server"}
+                    aria-label={s.status == "STOPPED" ? "Stop server" : "Start server"}
                   >
-                    {s.running ? (
+                    {s.status == "RUNNING" ? (
                       <div className="flex gap-1">
                         <div className="h-5 w-1.5 bg-white rounded-sm" />
                         <div className="h-5 w-1.5 bg-white rounded-sm" />

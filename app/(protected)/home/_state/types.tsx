@@ -2,21 +2,21 @@ export type Server = {
   id: string;
   name: string;
   maxPlayers: number;
-  version: string;
+  minecraftVersion: string;
   ramGb: number;
   cpuCores: number;
   modded: boolean;
   region: string;
-  running: boolean;
+  status: string;
 };
 
 export type PaymentMethod =
   | { type: "none" }
   | {
-      type: "card";
-      holderName: string;
-      brand: "Visa" | "Mastercard" | "Amex" | "Other";
-      last4: string;
-      expMonth: string;
-      expYear: string;
-    };
+    type: "card";
+    holderName: string;
+    brand: "Visa" | "Mastercard" | "Amex" | "Other";
+    last4: string;
+    expMonth: string;
+    expYear: string;
+  };
