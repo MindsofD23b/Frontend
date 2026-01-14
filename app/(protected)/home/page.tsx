@@ -8,11 +8,11 @@ export default function HomePage() {
   return (
     <>
       {/* HEADER */}
-      <div className="h-auto sm:h-20 rounded-2xl bg-[#2A2A2A] px-4 sm:px-6 py-4 sm:py-0 flex items-center">
-        <div className="text-white text-base sm:text-lg font-semibold">
-          Current Servers
-        </div>
-      </div>
+      <div className="relative rounded-2xl bg-[#2A2A2A] px-4 sm:px-6 py-4 sm:py-5 mb-4 sm:mb-6 flex items-center justify-center">
+  <div className="text-white/90 text-base sm:text-lg font-semibold tracking-wide">
+    Current Servers
+  </div>
+</div>
 
       {/* LIST */}
       <div className="flex-1 rounded-2xl bg-[#2A2A2A] p-4 sm:p-6 overflow-auto">
@@ -35,7 +35,7 @@ export default function HomePage() {
                     {s.name}
                   </div>
 
-                  <div className="mt-2 text-[11px] sm:text-xs text-white/70 leading-relaxed break-words">
+                  <div className="mt-2 text-[11px] sm:text-xs text-white/70 leading-relaxed wrap-break-words">
                     {s.version} • {s.region} • {s.ramGb}GB RAM • {s.cpuCores} CPU •
                     Max {s.maxPlayers} players{s.modded ? " • Modded" : ""}
                   </div>

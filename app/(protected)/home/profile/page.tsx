@@ -2,11 +2,14 @@ export default function ProfilePage() {
   return (
     <>
       {/* HEADER */}
-      <div className="h-auto sm:h-20 rounded-2xl bg-[#2A2A2A] px-4 sm:px-6 py-4 sm:py-0 flex items-center">
-        <div className="text-white text-base sm:text-lg font-semibold">
-          Profile
-        </div>
-      </div>
+      
+        <div className="relative rounded-2xl bg-[#2A2A2A]  px-4 sm:px-6 py-4 sm:py-5 mb-4 sm:mb-6 flex items-center justify-center">
+  <div className="text-white/90 text-base sm:text-lg font-semibold tracking-wide">
+    Profile
+  </div>
+</div>
+
+      
 
       {/* CONTENT */}
       <div className="flex-1 rounded-2xl bg-[#2A2A2A] p-4 sm:p-6 overflow-auto">
@@ -20,7 +23,7 @@ export default function ProfilePage() {
           <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="rounded-2xl border border-white/10 bg-white/5 p-4 sm:p-5">
               <div className="text-sm text-white/60">Email</div>
-              <div className="mt-1 text-white font-semibold break-words">—</div>
+              <div className="mt-1 text-white font-semibold wrap-break-words">—</div>
             </div>
 
             <div className="rounded-2xl border border-white/10 bg-white/5 p-4 sm:p-5">
