@@ -1,6 +1,6 @@
 import { getAuthHeader, useAuthStore } from "../stores/auth";
 
-const BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL ?? "http://localhost:3000";
+const BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL ?? "http://localhost:3000/api";
 
 function toRecordHeaders(h?: HeadersInit): Record<string, string> {
     if (!h) return {};

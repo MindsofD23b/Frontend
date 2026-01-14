@@ -35,9 +35,9 @@ export default function CheckoutBigPage() {
     // turn "a,b,c" into ["a","b","c"]
     const whitelist = enableWhitelist
       ? whitelistText
-          .split(",")
-          .map((x) => x.trim())
-          .filter(Boolean)
+        .split(",")
+        .map((x) => x.trim())
+        .filter(Boolean)
       : [];
 
     // seed must be number (your backend expects number)
@@ -45,10 +45,9 @@ export default function CheckoutBigPage() {
     const safeSeed = Number.isFinite(seedNumber) ? seedNumber : 0;
 
     try {
-      const res = await apiFetch("/api/servers", {
+      const res = await apiFetch("/servers", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        credentials: "include",
         body: JSON.stringify({
           serverName,
           eula,
@@ -82,21 +81,21 @@ export default function CheckoutBigPage() {
     <div className="h-full flex flex-col gap-4">
       {/* HEADER */}
       <div className="relative rounded-2xl bg-[#2A2A2A] px-4 sm:px-6 py-4 sm:py-5 mb-4 sm:mb-6">
-  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-    {/* Title */}
-    <div className="text-white/90 text-base sm:text-lg font-semibold tracking-wide">
-      Checkout: Big Package
-    </div>
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+          {/* Title */}
+          <div className="text-white/90 text-base sm:text-lg font-semibold tracking-wide">
+            Checkout: Big Package
+          </div>
 
-    {/* Back link */}
-    <Link
-      href="/home/add-server"
-      className="text-white/70 hover:text-white text-sm sm:text-base"
-    >
-      Back
-    </Link>
-  </div>
-</div>
+          {/* Back link */}
+          <Link
+            href="/home/add-server"
+            className="text-white/70 hover:text-white text-sm sm:text-base"
+          >
+            Back
+          </Link>
+        </div>
+      </div>
 
       {/* CONTENT */}
       <div className="flex-1 rounded-2xl bg-[#2A2A2A] p-4 sm:p-6 text-white/80">
