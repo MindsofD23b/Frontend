@@ -69,7 +69,7 @@ export default function CheckoutBigPage() {
       // otherwise you can check res.ok or read JSON depending on your apiFetch implementation
 
       // Example: redirect after creation
-      router.push("/home/servers");
+      router.push("/home");
     } catch (err: any) {
       setError(err?.message ?? "Failed to create server.");
     } finally {
