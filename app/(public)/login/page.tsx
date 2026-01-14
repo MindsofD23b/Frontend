@@ -6,6 +6,13 @@ import { apiFetch } from "../../service/apiClient";
 import { useAuthStore } from "../../stores/auth";
 import { useSearchParams, useRouter } from "next/navigation";
 
+function safeNextPath(nextParam: string | null) {
+  if (!nextParam) return "/home";
+  if (!nextParam.startsWith("/")) return "/home";
+  if (nextParam.startsWith("//")) return "/home";
+  return nextParam;
+}
+
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -16,7 +23,7 @@ export default function LoginPage() {
 
   const router = useRouter();
   const searchParams = useSearchParams();
-  const next = searchParams.get("next") ?? "/home";
+  const next = safeNextPath(searchParams.get("next"));
 
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
@@ -72,14 +79,14 @@ export default function LoginPage() {
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full rounded-full bg-[#2A2A2A] px-4 py-3 text-sm text-white placeholder:text-gray-400 outline-none border border-transparent focus:border-[#FF5E1E] focus:ring-2 focus:ring-[#FF5E1E]/60"
                   placeholder="Enter your email"
+                  autoComplete="email"
+                  inputMode="email"
                   required
                 />
               </div>
 
               <div>
-                <label className="block text-sm mb-2 text-gray-200">
-                  Password
-                </label>
+                <label className="block text-sm mb-2 text-gray-200">Password</label>
 
                 <div className="relative">
                   <input
@@ -88,6 +95,7 @@ export default function LoginPage() {
                     onChange={(e) => setPassword(e.target.value)}
                     className="w-full rounded-full bg-[#2A2A2A] px-4 py-3 pr-12 text-sm text-white placeholder:text-gray-400 outline-none border border-transparent focus:border-[#FF5E1E] focus:ring-2 focus:ring-[#FF5E1E]/60"
                     placeholder="Enter your password"
+                    autoComplete="current-password"
                     required
                   />
 
@@ -145,13 +153,10 @@ export default function LoginPage() {
               </button>
             </form>
 
-            <div className="mt-6 text-xs text-gray-300 leading-relaxed">
+            <div className="mt-6 text-xs text-gray-300 leading-relaxed text-center sm:text-left">
               <p>
                 Forgot your password? Click{" "}
-                <Link
-                  href="/forgotpassword"
-                  className="text-[#FF5E1E] hover:underline"
-                >
+                <Link href="/forgotpassword" className="text-[#FF5E1E] hover:underline">
                   here
                 </Link>
                 .
@@ -159,10 +164,7 @@ export default function LoginPage() {
 
               <p className="mt-3">
                 Don’t have an account? Create one{" "}
-                <Link
-                  href="/register"
-                  className="text-[#FF5E1E] hover:underline"
-                >
+                <Link href="/register" className="text-[#FF5E1E] hover:underline">
                   here
                 </Link>
                 .

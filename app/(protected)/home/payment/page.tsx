@@ -128,9 +128,9 @@ export default function PaymentPage() {
   return (
     <>
       {/* Top Bar */}
-      <div className="flex items-center gap-3">
-        <div className="flex-1 h-20 rounded-2xl bg-gradient-to-r from-[#1C1C1C] to-[#232323] px-6 flex items-center justify-center shadow-inner ring-1 ring-white/10">
-          <div className="text-white/90 text-lg font-semibold tracking-wide">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+        <div className="flex-1 h-auto sm:h-20 rounded-2xl bg-gradient-to-r from-[#1C1C1C] to-[#232323] px-4 sm:px-6 py-4 sm:py-0 flex items-center justify-center shadow-inner ring-1 ring-white/10">
+          <div className="text-white/90 text-base sm:text-lg font-semibold tracking-wide">
             Payment Method
           </div>
         </div>
@@ -138,54 +138,54 @@ export default function PaymentPage() {
         <button
           type="button"
           onClick={removeMethod}
-          className="h-12 px-5 rounded-full bg-gradient-to-br from-red-500 to-red-700 text-white font-semibold shadow-[0_0_18px_rgba(255,60,60,0.55)] hover:scale-[1.02] transition"
+          className="h-11 sm:h-12 w-full sm:w-auto px-5 rounded-full bg-gradient-to-br from-red-500 to-red-700 text-white font-semibold shadow-[0_0_18px_rgba(255,60,60,0.55)] hover:scale-[1.02] transition"
         >
           Remove
         </button>
       </div>
 
       {/* Main Panel */}
-      <div className="flex-1 rounded-2xl bg-black/40 backdrop-blur-xl p-6 ring-1 ring-white/10 shadow-2xl">
-        <div className="h-full rounded-3xl bg-gradient-to-br from-[#161616]/80 to-[#1F1F1F]/80 p-6 ring-1 ring-white/10">
+      <div className="flex-1 rounded-2xl bg-black/40 backdrop-blur-xl p-4 sm:p-6 ring-1 ring-white/10 shadow-2xl">
+        <div className="h-full rounded-3xl bg-gradient-to-br from-[#161616]/80 to-[#1F1F1F]/80 p-4 sm:p-6 ring-1 ring-white/10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 h-full">
-
             {/* LEFT: Saved Method */}
-            <div className="rounded-3xl bg-gradient-to-b from-[#242424] to-[#1A1A1A] p-6 flex flex-col ring-1 ring-orange-500/15 shadow-[0_0_25px_rgba(255,120,40,0.12)]">
-              <div className="flex items-start justify-between">
+            <div className="rounded-3xl bg-gradient-to-b from-[#242424] to-[#1A1A1A] p-4 sm:p-6 flex flex-col ring-1 ring-orange-500/15 shadow-[0_0_25px_rgba(255,120,40,0.12)]">
+              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
                 <h3 className="text-white font-semibold tracking-wide">
                   Saved Payment
                 </h3>
-                <span className="rounded-full bg-orange-500/15 px-3 py-1 text-xs text-orange-200 ring-1 ring-orange-400/25">
+                <span className="w-fit rounded-full bg-orange-500/15 px-3 py-1 text-xs text-orange-200 ring-1 ring-orange-400/25">
                   Stored locally (demo)
                 </span>
               </div>
 
               <p className="mt-2 text-sm text-white/60 leading-relaxed">
                 This is your currently saved payment method. For now it is stored
-                in the browser (localStorage). Later this will be linked to your account.
+                in the browser (localStorage). Later this will be linked to your
+                account.
               </p>
 
-              <div className="mt-6 rounded-3xl bg-black/25 ring-1 ring-white/10 p-5 shadow-[0_0_22px_rgba(255,120,40,0.08)]">
+              <div className="mt-6 rounded-3xl bg-black/25 ring-1 ring-white/10 p-4 sm:p-5 shadow-[0_0_22px_rgba(255,120,40,0.08)]">
                 {method.type === "none" ? (
                   <div className="text-white/60 text-sm">
                     No payment method saved yet.
                     <div className="mt-3 text-xs text-white/40">
-                      Add one on the right side.
+                      Add one below / on the right side.
                     </div>
                   </div>
                 ) : method.type === "card" ? (
                   <>
-                    <div className="flex items-center justify-between">
-                      <div className="text-white font-semibold text-lg">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                      <div className="text-white font-semibold text-base sm:text-lg break-words">
                         •••• •••• •••• {method.last4}
                       </div>
                       <BrandBadge brand={method.brand} />
                     </div>
 
-                    <div className="mt-4 grid grid-cols-2 gap-3 text-sm">
+                    <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
                       <div className="rounded-2xl bg-white/5 ring-1 ring-white/10 p-4">
                         <div className="text-white/50 text-xs">Card Holder</div>
-                        <div className="mt-1 text-white/85 font-semibold">
+                        <div className="mt-1 text-white/85 font-semibold break-words">
                           {method.holderName}
                         </div>
                       </div>
@@ -204,18 +204,18 @@ export default function PaymentPage() {
                   </>
                 ) : (
                   <>
-                    <div className="flex items-center justify-between">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                       <div className="text-white font-semibold text-lg">
                         PayPal
                       </div>
-                      <span className="inline-flex items-center rounded-full px-3 py-1 text-xs text-white/80 bg-black/30 ring-1 ring-white/15 shadow-[0_0_18px_rgba(90,180,255,0.25)]">
+                      <span className="w-fit inline-flex items-center rounded-full px-3 py-1 text-xs text-white/80 bg-black/30 ring-1 ring-white/15 shadow-[0_0_18px_rgba(90,180,255,0.25)]">
                         Connected
                       </span>
                     </div>
 
                     <div className="mt-4 rounded-2xl bg-white/5 ring-1 ring-white/10 p-4">
                       <div className="text-white/50 text-xs">Email</div>
-                      <div className="mt-1 text-white/85 font-semibold">
+                      <div className="mt-1 text-white/85 font-semibold break-words">
                         {method.email}
                       </div>
                     </div>
@@ -239,7 +239,7 @@ export default function PaymentPage() {
             </div>
 
             {/* RIGHT: Add/Update Method */}
-            <div className="rounded-3xl bg-gradient-to-b from-[#262626] to-[#1C1C1C] p-6 flex flex-col ring-2 ring-red-500/25 shadow-[0_0_35px_rgba(255,60,60,0.25)]">
+            <div className="rounded-3xl bg-gradient-to-b from-[#262626] to-[#1C1C1C] p-4 sm:p-6 flex flex-col ring-2 ring-red-500/25 shadow-[0_0_35px_rgba(255,60,60,0.25)]">
               <div className="flex items-start justify-between">
                 <h3 className="text-white font-semibold tracking-wide">
                   Add / Update
@@ -255,12 +255,12 @@ export default function PaymentPage() {
               </p>
 
               {/* Tabs */}
-              <div className="mt-5 flex gap-3">
+              <div className="mt-5 flex flex-col sm:flex-row gap-3">
                 <button
                   type="button"
                   onClick={() => setTab("card")}
                   className={[
-                    "rounded-full px-5 py-2 text-sm font-semibold ring-1 transition",
+                    "w-full sm:w-auto rounded-full px-5 py-2 text-sm font-semibold ring-1 transition",
                     tab === "card"
                       ? "bg-gradient-to-r from-orange-400 to-orange-600 text-white ring-orange-400/40 shadow-[0_0_18px_rgba(255,140,60,0.45)]"
                       : "bg-white/5 text-white/70 ring-white/10 hover:bg-white/10",
@@ -273,7 +273,7 @@ export default function PaymentPage() {
                   type="button"
                   onClick={() => setTab("paypal")}
                   className={[
-                    "rounded-full px-5 py-2 text-sm font-semibold ring-1 transition",
+                    "w-full sm:w-auto rounded-full px-5 py-2 text-sm font-semibold ring-1 transition",
                     tab === "paypal"
                       ? "bg-gradient-to-r from-red-500 to-red-700 text-white ring-red-400/40 shadow-[0_0_18px_rgba(255,60,60,0.5)]"
                       : "bg-white/5 text-white/70 ring-white/10 hover:bg-white/10",
@@ -298,16 +298,14 @@ export default function PaymentPage() {
                     />
                   </div>
 
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                       <label className="block text-xs text-white/60 mb-2">
                         Brand
                       </label>
                       <select
                         value={brand}
-                        onChange={(e) =>
-                          setBrand(e.target.value as any)
-                        }
+                        onChange={(e) => setBrand(e.target.value as any)}
                         aria-label="Card brand"
                         className="w-full rounded-2xl bg-[#2A2A2A] px-4 py-3 text-sm text-white outline-none ring-1 ring-white/10 focus:ring-orange-400/60"
                       >
@@ -328,11 +326,12 @@ export default function PaymentPage() {
                         className="w-full rounded-2xl bg-[#2A2A2A] px-4 py-3 text-sm text-white placeholder:text-white/30 outline-none ring-1 ring-white/10 focus:ring-orange-400/60"
                         placeholder="1234"
                         maxLength={4}
+                        inputMode="numeric"
                       />
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                       <label className="block text-xs text-white/60 mb-2">
                         Expiration Month
@@ -342,6 +341,7 @@ export default function PaymentPage() {
                         onChange={(e) => setExpMonth(e.target.value)}
                         className="w-full rounded-2xl bg-[#2A2A2A] px-4 py-3 text-sm text-white placeholder:text-white/30 outline-none ring-1 ring-white/10 focus:ring-orange-400/60"
                         placeholder="MM"
+                        inputMode="numeric"
                       />
                     </div>
                     <div>
@@ -353,6 +353,7 @@ export default function PaymentPage() {
                         onChange={(e) => setExpYear(e.target.value)}
                         className="w-full rounded-2xl bg-[#2A2A2A] px-4 py-3 text-sm text-white placeholder:text-white/30 outline-none ring-1 ring-white/10 focus:ring-orange-400/60"
                         placeholder="YYYY"
+                        inputMode="numeric"
                       />
                     </div>
                   </div>
@@ -361,7 +362,7 @@ export default function PaymentPage() {
                     <button
                       type="button"
                       onClick={saveCard}
-                      className="rounded-full px-7 py-2 bg-gradient-to-r from-orange-400 to-orange-600 text-white font-semibold shadow-[0_0_18px_rgba(255,140,60,0.6)] hover:scale-105 transition"
+                      className="w-full sm:w-auto rounded-full px-7 py-2 bg-gradient-to-r from-orange-400 to-orange-600 text-white font-semibold shadow-[0_0_18px_rgba(255,140,60,0.6)] hover:scale-[1.02] transition"
                     >
                       Save Card
                     </button>
@@ -382,6 +383,8 @@ export default function PaymentPage() {
                       onChange={(e) => setPaypalEmail(e.target.value)}
                       className="w-full rounded-2xl bg-[#2A2A2A] px-4 py-3 text-sm text-white placeholder:text-white/30 outline-none ring-1 ring-white/10 focus:ring-red-400/60"
                       placeholder="your@email.com"
+                      inputMode="email"
+                      autoComplete="email"
                     />
                   </div>
 
@@ -393,7 +396,7 @@ export default function PaymentPage() {
                     <button
                       type="button"
                       onClick={savePaypal}
-                      className="rounded-full px-7 py-2 bg-gradient-to-r from-red-500 to-red-700 text-white font-semibold shadow-[0_0_18px_rgba(255,60,60,0.55)] hover:scale-105 transition"
+                      className="w-full sm:w-auto rounded-full px-7 py-2 bg-gradient-to-r from-red-500 to-red-700 text-white font-semibold shadow-[0_0_18px_rgba(255,60,60,0.55)] hover:scale-[1.02] transition"
                     >
                       Save PayPal
                     </button>
@@ -409,7 +412,6 @@ export default function PaymentPage() {
                 You can replace your method anytime — the last saved one is active.
               </div>
             </div>
-
           </div>
         </div>
       </div>
